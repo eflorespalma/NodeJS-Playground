@@ -1,0 +1,27 @@
+{
+  "name": "playground-nodejs",
+  "version": "1.0.0",
+  "description": "Samples using node js",
+  "main": "express-server.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eflorespalma/NodeJS-Playground.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "eflorespalma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eflorespalma/NodeJS-Playground/issues"
+  },
+  "homepage": "https://github.com/eflorespalma/NodeJS-Playground#readme"
+}
