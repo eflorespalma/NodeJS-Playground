@@ -7,5 +7,5 @@ app.get('/', (request, response) => {
 });
 
 app.listen(8085, () =>{
-    console.log('Server running with Express Server');
+    console.log('Server running with Express.');
 });
