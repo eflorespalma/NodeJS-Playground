@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Real Time</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div style="padding-left:50px; padding-right:50px;">
+        <div class="social-feed-box">
+            <div class="social-avatar">
+                <a href="#" class="pull-left">
+                    <img alt="image" src="a1.jpg">
+                </a>
+                <div class="media-body">
+                    <a href="#">
+                    Edgar Flores P.
+                </a>
+                    <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                </div>
+            </div>
+            <div class="social-body">
+                <p>
+                    Los datos de Sensor Tower, SurveyMonkey y Apptopia también apuntan que el interés, las descargas, los usuarios activos y
+                    el tiempo gastado en Pokémon Go ha decaído cada día. Esto al igual que la búsqueda en Google de "realidad
+                    aumentada", la cual había aumentado al momento de lanzarse el juego móvil. Si las bajas en los usuarios
+                    continúan esto podría traducirse en problemas no solo para Pokémon Go, si no que para la realidad aumentada
+                    en general.
+                </p>
+
+                <div class="btn-group">
+                    <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                </div>
+            </div>
+            <div class="social-footer">
+                <div id="listCommet">
+                </div>
+                <div class="social-comment">
+                    <a href="#" class="pull-left">
+                        <img id="imgUser" alt="image" src="a2.jpg">
+                    </a>
+                    <div class="media-body">
+                        <textarea id="message" class="form-control" placeholder="Escribe un comentario..."></textarea>
+                        <hr />
+                        <a id="btnComment" class="btn btn-success btn-rounded" href="#" style="float:right;">Enviar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            var socket;
+            $(document).ready(() => {
+                socket = io.connect();
+                socket.on('broad', (data) => {
+                   alert(data);
+                });
+
+                $("#btnComment").click(() => {
+                    SendData();
+                });
+            });
+
+            function SendData() {
+                var $message = $("#message");
+                var data = $message.val();
+                $message.val("");
+                socket.emit('print', data);
+            }
+        </script>
+</body>
+
+</html>
