@@ -64,9 +64,20 @@
             $(document).ready(() => {
                 socket = io.connect();
                 socket.on('broad', (data) => {
-                   alert(data);
+                    var date = new Date();
+                    var dateFormat = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+                    var divHtml = "<div class='social-comment'>" +
+                        "<a href='#' class='pull-left'>" +
+                        "<img alt='image' src='" + data.img + "'>" +
+                        "</a>" +
+                        "<div class='media-body'>" +
+                        "<a href='#'>" + data.displayName + "</a> " +
+                        data.comment +
+                        "<br />" +
+                        "<a href='#' data-like='0' onclick='Like(this)' class='small'><i class='fa fa-thumbs-up'></i> Like this!</a> - <small class='text-muted'>" + dateFormat + "</small>" +
+                        "</div></div>";
+                    $("#listCommet").hide().append(divHtml).fadeIn(100);
                 });
-
                 $("#btnComment").click(() => {
                     SendData();
                 });
@@ -74,9 +85,14 @@
 
             function SendData() {
                 var $message = $("#message");
-                var data = $message.val();
+                var comment = $message.val();
+                var jsonItem = {
+                    comment: comment,
+                    img: 'a2.jpg',
+                    displayName: 'Luis Alonso'
+                };
                 $message.val("");
-                socket.emit('print', data);
+                socket.emit('print', jsonItem);
             }
         </script>
 </body>
